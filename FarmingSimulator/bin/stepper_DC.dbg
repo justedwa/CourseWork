@@ -1,0 +1,20 @@
+;RTI_ISR:
+ ;       ldaa Counter
+  ;      inca
+   ;     staa Counter
+    ;    cmpa Var_1
+     ;   ble  s1
+      ;  cmpa #15
+       ; ble s2
+        ;ldaa #$00
+        ;staa Counter
+        ;movb #$80,CRGFLG
+        ;RTI
+        ;s1:
+         ;  bset port_t,#%00001000
+          ; movb #$80,CRGFLG
+           ;RTI
+        ;s2:
+         ;  bclr port_t,#%00001000
+          ; movb #$80,CRGFLG
+           ;RTI

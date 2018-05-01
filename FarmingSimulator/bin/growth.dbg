@@ -1,0 +1,132 @@
+    XDEF growth
+    XREF seconds,wtrctrldisp,fertctrldisp,disp,gamestate,cropstats,fertDC,wtrDC
+    
+growth:
+           ldd cropstats
+           brclr cropstats,#%00000001,endgrow
+           brclr cropstats,#%00000010,endgrow
+           brclr cropstats,#%00000011,endgrow
+           ldd seconds
+           cpd #10
+           ble endgrow
+           ldaa cropstats
+           cmpa #7
+           lbeq growing
+           cmpa #15
+           lbeq matured
+           cmpa #31
+           lbeq harvest
+endgrow:
+           RTS
+           
+
+
+growing:
+           movb #00,seconds
+           bclr cropstats,#%00000011
+           bset cropstats,#%00001000
+           movb #'*',disp
+           movb #'*',disp+1
+           movb #'*',disp+2
+           movb #'*',disp+3
+           movb #'*',disp+4
+           movb #'*',disp+5
+           movb #'*',disp+6
+           movb #' ',disp+7
+           movb #' ',disp+8
+           movb #'*',disp+9
+           movb #'*',disp+10
+           movb #'*',disp+11
+           movb #'*',disp+12
+           movb #'*',disp+13
+           movb #'*',disp+14
+           movb #'*',disp+15
+           movb #'*',disp+16
+           movb #'*',disp+17
+           movb #'*',disp+18
+           movb #'*',disp+19
+           movb #'*',disp+20
+           movb #'*',disp+21
+           movb #'*',disp+22
+           movb #' ',disp+23
+           movb #' ',disp+24
+           movb #'*',disp+25
+           movb #'*',disp+26
+           movb #'*',disp+27
+           movb #'*',disp+28
+           movb #'*',disp+29
+           movb #'*',disp+30
+           movb #'*',disp+31
+           movb #0,disp+32
+           movb #3,gamestate
+           movb #'1',fertctrldisp+29
+           movb #'0',fertctrldisp+30
+           movb #'%',fertctrldisp+31
+           movb #' ',wtrctrldisp+28
+           movb #'5',wtrctrldisp+29
+           movb #'0',wtrctrldisp+30
+           movb #'%',wtrctrldisp+31
+           movb #30,wtrDC
+           movb #6,fertDC
+           rts
+matured:
+           movb #00,seconds
+           bclr cropstats,#%00000011
+           bset cropstats,#%00010000
+           movb #'@',disp
+           movb #'@',disp+1
+           movb #'@',disp+2
+           movb #'@',disp+3
+           movb #'@',disp+4
+           movb #'@',disp+5
+           movb #'@',disp+6
+           movb #' ',disp+7
+           movb #' ',disp+8
+           movb #'@',disp+9
+           movb #'@',disp+10
+           movb #'@',disp+11
+           movb #'@',disp+12
+           movb #'@',disp+13
+           movb #'@',disp+14
+           movb #'@',disp+15
+           movb #'@',disp+16
+           movb #'@',disp+17
+           movb #'@',disp+18
+           movb #'@',disp+19
+           movb #'@',disp+20
+           movb #'@',disp+21
+           movb #'@',disp+22
+           movb #' ',disp+23
+           movb #' ',disp+24
+           movb #'@',disp+25
+           movb #'@',disp+26
+           movb #'@',disp+27
+           movb #'@',disp+28
+           movb #'@',disp+29
+           movb #'@',disp+30
+           movb #'@',disp+31
+           movb #0,disp+32
+           movb #4,gamestate
+           movb #30,wtrDC
+           movb #6,fertDC
+           movb #'1',fertctrldisp+29
+           movb #'0',fertctrldisp+30
+           movb #'%',fertctrldisp+31
+           movb #' ',wtrctrldisp+28
+           movb #'5',wtrctrldisp+29
+           movb #'0',wtrctrldisp+30
+           movb #'%',wtrctrldisp+31
+           rts
+harvest:   
+           movb #30,wtrDC
+           movb #6,fertDC
+           movb #'1',fertctrldisp+29
+           movb #'0',fertctrldisp+30
+           movb #'%',fertctrldisp+31
+           movb #' ',wtrctrldisp+28
+           movb #'5',wtrctrldisp+29
+           movb #'0',wtrctrldisp+30
+           movb #'%',wtrctrldisp+31
+           movb #0,cropstats
+           movb #5,gamestate
+           rts

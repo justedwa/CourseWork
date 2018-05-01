@@ -1,0 +1,5 @@
+XDEF fertilize
+XREF gamestate
+		
+fertilize:
+    ldab gamestate
