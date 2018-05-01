@@ -1,0 +1,7 @@
+To create this program I will utilize 4 seperate class file one containing the student and all of their non address information. Using the 
+Extension feature we can extend student to the address class which will allow easy access to edit the data within the address class. To populate these classes
+I will use a loop to create and instance of student then use a scanner to take in the data from the file and seperate using .split(). The result
+of the .split operation will be used to populate the class student and then this class will be put on the stack before being replaced by the next entry.
+To retrieve data from the stack annother loop will be utilized to assign the items on the stack to a new instance of the student class. The 
+data can then be printed from this and displayed on the screen. The process will repeat by reassigning values to the instance of student until all
+data has been printed.

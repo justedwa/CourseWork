@@ -1,0 +1,27 @@
+Goal: Take input from a file and store the data into appropriate classes, then let the user utilize this data.
+
+Input: Strings from a file, each component is seperated by a comma.
+the user will also be able to input hours worked.
+Output: The user will have options presented to them in a menu. Upon selection the data
+can either be printed. And once the hours worked have been taken in it can calculate the total pay.
+
+Step-by-Step
+1. Ask user to either load from file or exit
+2. Read from file using readers
+3. Use .split to seperate pieces of each line
+4. compare the ID portion to determine what class the employee belongs to
+5. Store that employees info
+6. Store each employee within an array
+7.Ask the user to Print,Input hours,Calculate pay or exit.
+8.If print then use a loop and the array of employees to print their info using getters.
+9.If Input hours use a scanner to take user inputted hours
+10.If Calculate pay check if the hours have been inputed if so then multiply the rate of the employees and the hours in order to obtain pay. Then print.
+11.If exit terminate the program.
+
+Classes:
+Employee.java: contains all the employee data
+Pharmacist.java: contains rate for pharmacist inherits from employee
+PharmacyManager.java: contains rate for pharmacy manager inherits from employee
+Technician.java: cantains rate for technician inherits from employee
+SeniorTech.java: contains rate for senior tech inherits from employee
+Driver.java: contains the main program and user interface

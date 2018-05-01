@@ -1,0 +1,14 @@
+The bubble sort algorithm contains a nested loop structure. Since the structure is (x = 0,x<N;x++) in this case
+the loop will iterate N times the only exception being if the increment operator is greater than 1. In the case
+of Big O notation we only care about the end behaviour as N -> infinity. In this case the increment does not matter
+the loop will increment N times. So If we let the time to execute one iteration of the loop equal T then the time to
+execute for N inputs is N*T. In the case of bubble sort the it will execute N number of times in the outer loop but
+the nested inner loop will execute N*N amount of times because for each execution of the outer loop the inner loop will
+execute a full N number of times. This leads to the conclusion that the bubble sort algorithm is O(N^2).
+
+The insertion sort algorithm also contains a nested loop structure. Like the above example the outside loop will
+execute N times for a given input array A[N]. The inner loop however is unlike bubble sort as it does not always
+iterate if the input array is already partially sorted. This does not matter for big O though because big O assumes
+the worst case scenario conditions. With this in mind the inner loop will also execute N amount of times. Again this
+means that the total execution time is T(N*N) or O(N^2). Insertion sort will execute faster than bubble sort if the
+array is partially sorted because in this case the inner loop will iterate fewer times.

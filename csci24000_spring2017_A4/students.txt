@@ -1,0 +1,11 @@
+FirstName,LastName,StreetAddress,Address 2,City,State,ZipCode,Student ID,GPA
+Florence,Forrest,1843 Glenview Drive,Apt. 2,Corpus Christi,TX,78401,123456,3.215
+Casey,Roberta,3668 Thunder Road,,Palo Alto,CA,94306,456789,2.978
+Koch,Sandra,2707 Waterview Lane,Apt 302,Las Vegas,NM,87701,333555,2.546
+Dover,Darrel,845 Dola Mine Road,,Wendell,NC,27591,124789,3.958
+Turner,Doris,4489 Tully Street,Apt B,Detroit,MI,48219,564563,2.127
+Hernandez,Juan,2656 Creekside Lane,,Goleta,CA,93117,576568,1.598
+Moon,Sandy,1125 Joyce Street,,Mobile,AL,36693,709095,3.995
+Reid,Andre,1225 Gnatty Creek Road,,Westbury,NY,11590,685544,2.985
+Cracraft,Tara,3479 Austin Avenue,,Brunswick,GA,31520,567567,3.256
+Valadez,Vincent,1740 Parkview Drive,,Sugar Land,TX,77478,000012,3.127

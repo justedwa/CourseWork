@@ -1,0 +1,10 @@
+To create the game of horse I will create a player class to store all the methods
+to make the game run. There will be two private variables one that stores the score numerically, and one that stores the score in a char array.
+There will be a default constructor that allocates the array on the heap then an initialization function will initialize the array to contain spaces.
+There will be a shot method that generates a random number for each player class. These numbers will be compaired to determine who make the shot.
+There are also getters and setter for each of the private variables. The destructor will delete the char array generated in the constructor.
+There are 4 conditions that determine how the game flows. If either play scores and the other doesn't then the player that missed gets a letter.
+If both or neither hit then the loop continues until one hits and one misses. Each time a person misses and the other hits the score counter is incremeted by 1 and the string for that player gains a letter.
+To break the loop the scores of each player are looked at and if they are greater than 5 then the loop exits and the winner is displayed.
+The destructor for each player is then called and the user is prompted if they want to continue or not.
+The program will exit if No is selected or continue from the begining if yes.
