@@ -1,0 +1,7 @@
+To create the spartan race program I will first initialize two variables that will store the position of the racers.
+From there I will write the intro text statements to the race then using three functions I will progress the race until the victory condition is met.
+To advance each racer a random number will be generated from 1-10 then based on this number the racer will either advance or retreat.
+The same process will be used for racer b. Within the main function there will be statements to control the racers from reaching undesired outputs such as falling below zero.
+Also if the racers land on eachother racer a will be decremented by 1 space. To print I will utilize a loop that will print spaces except when the value of the control variable is equal to the racers position.
+The order of the functions will be advanceA advanceB printRace. This will be contained in a while loop that will repeat until the victory condition of 50 is met.
+Once the victory condition is me the winner will be announced and the loop will break thus ending the program.
