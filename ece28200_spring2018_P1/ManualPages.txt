@@ -1,0 +1,80 @@
+NAME:
+	auth - authenticate user
+SYNOPSIS
+	auth(VOID)
+DESCRIPTION
+	Asks user to input password while terminal echoing is turned off. The password is then compaired to the stored value.
+	On success the program continues. On failure the program will exit with an error message.
+AUTHOR
+	Justin Edwards
+	
+NAME:
+	note - takes user input and appends to a text file. Time stamps are generated and appended automatically.
+SYNOPSIS
+	note [filename] -t [timeout period] -l
+DESCRIPTION
+	User is asked to authenticate with a password. A file will be automatically generated if no file argument is passed.
+	Otherwise the passed file name will be opened for editing. The user can then write to the file. If the timeout period
+	is reached the program will automatically exit. When the user is finished inputting text, QUIT can be used to exit.
+	
+	-t sets timeout period in seconds
+	-l opens previous file
+AUTHOR	
+	Justin Edwards
+	
+NAME:
+	readIn - takes user input and stores into a specified file.
+SYNOPSIS
+	int readIn(FILE *fp,int* timeout)
+DESCRIPTION
+	Takes in specified file in the form of a FILE*. File is then written to by user input using the getstr() function. When
+	the keyword QUIT is typed, the keyboard escape is pressed, or the timeout period, specified by the int* timeout, is reached
+	the function will return. A 1 is returned if there was data written to the file, 0 otherwise. Contains signal handler function
+	that controls timeout and keyboard escape behaviour. Upon catching a signal, the function will immediately return.
+	
+	FILE *fp - file to be appended
+	int* timeout - pointer to variable containing timeout period in seconds
+AUTHOR
+	Justin Edwards
+	
+NAME:
+	flags - checks input arguments for any flags and modifies program behaviour accordingly
+SYNOPSIS
+	FILE* flags(int ac,char *av[],FILE *fp,int* timeout)
+DESCRIPTION
+	This function will search the arguments for flags and the file name specified. If no file name is specified then one will be
+	generated automatically. The arguments passed on runtime must also be passed to this function as well as the timeout period and a file
+	pointer to store the newly opened file for editing. Function will return a file pointer to the specified opened file.
+	
+	int ac - number of arguments passed to the program
+	char *av[] - array containing the args passed to the program
+	FILE *fp - file pointer that will be assigned to an opened file
+	int* timeout - variable containing timeout period that will be modified if there is a -t flag in input args
+	
+	HELPER FUNCTIONS:
+	int flagsearch(int ac,char *av[],int* index,int* timeout)
+	DESCRIPTION
+	Scans through the input arguments looking for flags. If the -t flag is found the following argument, if a number, is set as the new
+	timeout period. If the -l flag is found then the function returns 1 indicating that note.cfg should be checked for the previous filename.
+	The function keeps track of the index if the filename args if no -l flag is passed.
+	
+	int ac - number of input args to program
+	char *av[] - input args passed to program at runtime
+	int* index - variable used to store the index of file name arguments
+	int* timeout - variable used to store the timeout period of the program.
+	
+AUTHOR
+	Justin Edwards
+
+NAME
+	timestamp - generates a timestamp to append to a specified file
+SYNOPSIS
+	void timestamp(FILE *fp)
+DESCRIPTION
+	This function will generate a timestamp using the time.h library then append to the currently opened file which is passed
+	as a file pointer. Format [MM/DD/YYYY HH:MM:SS DAY].
+	
+	FILE *fp - pointer to the file that the timestamp will be appended to.
+	
+AUTHOR
+	Justin Edwards
