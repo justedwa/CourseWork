@@ -1,0 +1,111 @@
+/*  more02.c  - version 0.2 of more
+ *	read and print 24 lines then pause for a few special commands
+ *      feature of version 0.2: reads from /dev/tty for commands
+ */
+#include	<stdio.h>
+#include 	<stdlib.h>
+#include 	<string.h>
+#define	PAGELEN	24
+#define	LINELEN	512
+
+void do_more(FILE *,char*,char*,FILE *);
+int see_more(FILE *);
+
+int main( int ac , char *av[] )
+{
+	char* in;
+	char* out = NULL;
+	if (ac < 2)
+	{
+		printf("\nSyntax Error");
+		exit(1);
+	}
+	if (ac == 2)
+	{
+		if(strcmp(av[1],"--help") == 0)
+		{
+			printf("\nAppends the contents of the source file to the destination\n");
+			printf("Usage: append [destination] [source]\n");
+			printf("Optional Flags:\n--help - Displays Help menu\n");
+			exit(1);
+		}
+		else
+		{
+			printf("\nSyntax error!");
+			exit(1);
+		}
+	}
+	if (ac > 2)
+	{	
+		in = av[2];
+		out = av[1];
+	}
+	else if (ac < 3)
+	{
+		in = av[2];
+		out = av[1];
+		printf("Input Truncated to two args see --help for proper usage\n");
+	}
+	FILE	*fp;
+	FILE *oFile;
+	if (out != NULL)
+	{
+		oFile = fopen(out,"a");
+	}
+	if ( (fp = fopen( in , "r" )) != NULL)
+	{
+		do_more( fp,out,in,oFile ) ; 
+		fclose( fp );
+		fclose(oFile);
+	}
+	else
+	{
+		fclose(fp);
+		fclose(oFile);
+	}
+	return 0;
+}
+
+
+void do_more( FILE *fp,char* out,char* in,FILE *oFile)
+/*
+ *  read PAGELEN lines, then call see_more() for further instructions
+ */
+{
+	char	line[LINELEN];
+	int	num_of_lines = 0;
+	int	see_more(FILE *), reply;
+	FILE	*fp_tty;
+
+	fp_tty = fopen( "/dev/tty", "r" );	   /* NEW: cmd stream   */
+	if ( fp_tty == NULL )			   /* if open fails     */
+		exit(1);                           /* no use in running */
+
+	while ( fgets( line, LINELEN, fp ) ){		/* more input	*/
+		if ( out != NULL)
+		{
+			fputs (line,oFile);
+		}		
+	}
+}
+
+int see_more(FILE *cmd)				   /* NEW: accepts arg  */
+/*
+ *	print message, wait for response, return # of lines to advance
+ *	q means no, space means yes, CR means one line
+ */
+{
+	int	c;
+
+	printf("\033[7m more? \033[m");		/* reverse on a vt100	*/
+	while( (c=getc(cmd)) != EOF )		/* NEW: reads from tty  */
+	{
+		if ( c == 'q' )			/* q -> N		*/
+			return 0;
+		if ( c == ' ' )			/* ' ' => next page	*/
+			return PAGELEN;		/* how many to show	*/
+		if ( c == '\n' )		/* Enter key => 1 line	*/
+			return 1;		
+	}
+	return 0;
+}
